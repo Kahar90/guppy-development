@@ -46,6 +46,10 @@ Route::get('/additem', function () {
     return view('additem');
 })->middleware(['auth', 'verified'])->name('additem');
 
+Route::post('/additem', "App\Http\Controllers\additemController@store")->middleware(['auth', 'verified'])->name('additem.store');
+
+Route::get('/additem', "App\Http\Controllers\additemController@index")->middleware(['auth', 'verified'])->name('additem.index');
+
 
 
 

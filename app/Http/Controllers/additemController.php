@@ -11,10 +11,12 @@ class additemController extends Controller
 {
     public function store(Request $request)
     {
-        DB::table('additems')->insert([
-            'name' => $request->name,
-            'house_no_block' => $request->house_no_block,
-            'complaint_text' => $request->complaint_text,
+        // dd($request->all()
+        // );
+
+        DB::table('items')->insert([
+            'item_name' => $request->item_name,
+            'picture_link' => $request->picture_link,
         ]);
         
         return redirect()->route('additem.index');
@@ -23,8 +25,8 @@ class additemController extends Controller
     // pull data from database
     public function index()
     {
-        $additems = DB::table('additems')->get();
-        return view('additems', ['additems' => $additems]);
+        $additems = DB::table('items')->get();
+        return view('additem', ['additems' => $additems]);
     }
 
 }

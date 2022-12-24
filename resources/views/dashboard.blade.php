@@ -12,10 +12,10 @@
                     {{ __("You're logged in!") }}
 
                     
-                    <div class="flex flex-col items-center justify-center mt-4">
-                        <a href="/complaints" class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Make a complaint</a>
-                        <a href="/booking" class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Make a booking</a>
-                        <a href="/additem" class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Add Item</a>
+                    <div class="flex flex-col items-center justify-center mt-4 gap-4">
+                        <a href="/complaints" class=" hover:bg-blue-200 text-black font-bold py-2 px-4 rounded">Make a complaint</a>
+                        <a href="/booking" class=" hover:bg-blue-200 text-black font-bold py-2 px-4 rounded">Make a booking</a>
+                        <a href="/additem" class=" hover:bg-blue-200 text-black font-bold py-2 px-4 rounded">Add Item</a>
                     </div>
 
 

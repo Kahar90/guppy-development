@@ -42,6 +42,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('item_name');
+            $table->string('picture_link');
         });
     }
 
@@ -53,5 +54,9 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('complaints');
+        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('items');
+        
     }
 };

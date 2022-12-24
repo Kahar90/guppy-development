@@ -16,7 +16,13 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = DB::table('bookings')->get();
-        return view('bookings', ['bookings' => $bookings]);
+        // get items from database
+        $items = DB::table('items')->get();
+
+        
+        return view('bookings', ['bookings' => $bookings, 'items' => $items]);
+
+
     }
 
 }
