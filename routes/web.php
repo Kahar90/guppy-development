@@ -22,6 +22,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::get('/dashboard', "App\Http\Controllers\dashboardController@index")->middleware(['auth', 'verified'])->name('dashboard.index');
+
+
+
 Route::get('/complaints', function () {
     return view('complaints');
 })->middleware(['auth', 'verified'])->name('complaints');
@@ -40,6 +45,21 @@ Route::get('/booking', function () {
 Route::post('/booking', "App\Http\Controllers\BookingController@store")->middleware(['auth', 'verified'])->name('booking.store');
 
 Route::get('/booking', "App\Http\Controllers\BookingController@index")->middleware(['auth', 'verified'])->name('booking.index');
+
+Route::get('/addbooking', function () {
+    return view('addbooking');
+})->middleware(['auth', 'verified'])->name('addbooking');
+
+
+
+    Route::get('/addbookingSuccess', function () {
+        return view('addbookingSuccess');
+    })->middleware(['auth', 'verified'])->name('addbookingSuccess');
+
+Route::post('/addbooking', "App\Http\Controllers\addbookingController@store")->middleware(['auth', 'verified'])->name('addbooking.store');
+
+
+// Route::get('/addbooking/{id}', "App\Http\Controllers\addbookingController@index")->middleware(['auth', 'verified'])->name('addbooking.index');
 
 // page that admin can use to add new items that is bookable
 Route::get('/additem', function () {

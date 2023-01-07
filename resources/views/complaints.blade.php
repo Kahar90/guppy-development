@@ -1,48 +1,74 @@
-<html>
+<x-app-layout>
+    <div>
+        <div class="hero min-h-screen bg-base-200  m-auto">
+            <div class="hero-content flex-col lg:flex-row-reverse">
 
-<head>
-    <title>Complaints</title>
-
-    <!-- tailwind -->
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="flex flex-col items-center justify-center mt-4">
-        <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded mt-10" onclick="window.location.href='/dashboard'">Dashboard</button>
-        <h1 class="text-4xl text-center font-bold text-gray-800">File a Complain</h1>
-        <form action="/complaints" method="POST">
-            @csrf
-            <div class="flex flex-col items-center justify-center mt-4">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" class="border-2 border-gray-300 p-2 rounded-lg">
-                <label for="house_no_block">House Number/Block</label>
-                <input type="text" name="house_no_block" id="house_no" class="border-2 border-gray-300 p-2 rounded-lg">
-                <label for="complaint_text">Complaint</label>
-                <textarea name="complaint_text" id="complaint" cols="30" rows="10" class="border-2 border-gray-300 p-2 rounded-lg"></textarea>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded mt-10" >Submit</button>
-            </div>
-        </form>
-
-
-        <div id="complaints-lists">
-
-            <h1 class="text-4xl text-center font-bold text-gray-800">Complaints</h1>
-            <div class="flex flex-col items-center justify-center mt-4 max-w-md min-w-md">
-                @foreach ($complaints as $complaint)
-                <div class="border-2 border-gray-300 p-2 rounded-lg mt-5">
-                    <p class="text-2xl font-bold text-gray-800">Name: {{ $complaint->name }}</p>
-                    <p class="text-2xl font-bold text-gray-800">House Number/Block: {{ $complaint->house_no_block }}</p>
-                    <p class="text-2xl font-bold text-gray-800">Complaint: {{ $complaint->complaint_text }}</p>
+                @if (Auth::user()->role !== 'admin')
+                <div class="text-center lg:text-left">
+                    <h1 class="text-3xl font-bold">Having an unsatisfactory experience?</h1>
+                    <p class="py-6">File a complaint, so that our staff can help you with it!</p>
                 </div>
-                @endforeach
-            </div>
+                <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div class="card-body">
+                        <form action="/complaints" method="POST">
+                            @csrf
+                            <div class="form-control">
 
+                                <label class="label">
+                                    <span class="label-text
+                text-gray-600">Name</span>
+                                </label>
+                                <input required="true" type="text" name="name" id="name" placeholder="Name" class="input input-bordered">
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text
+                text-gray-600">House Number/Block</span>
+                                </label>
+                                <input required="true" type="text" name="house_no_block" id="house_no" placeholder="House Number/Block" class="input input-bordered">
+                            </div>
+
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text
+                text-gray-600">Complaint</span>
+                                </label>
+                                <textarea placeholder="Write your complaint here..." name="complaint_text" id="complaint" cols="30" rows="10" required="true" class="textarea textarea-bordered"></textarea>
+                            </div>
+
+                            <div class="form-control mt-6">
+                                <button class="btn btn-primary">Submit</button>
+                            </div>
+                    </div>
+
+                    @endif
+
+                    @if (Auth::user()->role == 'admin')
+                    <div id="complaints_show" class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        @foreach ($complaints as $complaint)
+                        <div class="card w-96 bg-neutral text-neutral-content mb-10">
+                            <div class="card-body items-center text-center">
+                                <h2 class="card-title">
+                                    {{ $complaint->name }}
+
+                                </h2>
+                                <p>
+                                    {{ $complaint->house_no_block }}
+                                </p>
+
+                                <p>
+                                    {{ $complaint->complaint_text }}
+                                </p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
+    @endif
 
 
-
-</body>
-
-</html>
+</x-app-layout>
