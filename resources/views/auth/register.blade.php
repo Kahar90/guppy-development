@@ -1,24 +1,4 @@
 <x-guest-layout>
-
-
-    <!-- <div class="card lg:card-side bg-base-100 shadow-xl">
-  <figure><img src="https://placeimg.com/400/400/arch" alt="Album"/></figure>
-  <div class="card-body">
-    <h2 class="card-title text-white">New album is released!</h2>
-    <p class="text-white">Click the button to listen on Spotiwhy app.</p>
-    
-
-    <div class="bg-base-200 shadow-2xl text-white">
-    <input type="text" placeholder="Type here" class="input w-full max-w-xs" />
-    </div>
-    
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Listen</button>
-    </div>
-  </div>
-</div> -->
-
-
     <div class="bg-base-100 flex flex-row w-3/6 min-h-[70%] shadow-2xl rounded-md border border-slate-200">
 
         <div class="bg-[#6e7d95] w-4/6 flex items-center">
@@ -72,10 +52,6 @@
                     </div>
 
                     <button class="btn btn-primary bg-[#6e7d95] border border-[#6e7d95] max-w-xs m-auto w-2/6">LOGIN</button>
-                    <!-- <a class="text-xs mt-5 text-black m-auto hover:underline" href="/register">
-                        Don't have an account? Register here
-                    </a> -->
-
                 </div>
             </form>
         </div>
