@@ -37,10 +37,10 @@
                     </div>
                 </div>
 
-                <div class="available_items">
+                <!-- <div class="available_items">
                     <div class="overflow-x-auto w-full">
                         <table class="table w-half max-h-screen overflow-auto">
-                            <!-- head -->
+
                             <thead>
                                 <tr>
 
@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- row 1 -->
+
                                 @foreach ($additems as $additem)
                                 <tr>
                                     <td class="border px-4 py-2">{{ $additem->item_name }}</td>
@@ -63,7 +63,33 @@
                             </tbody>
                         </table>
                     </div>
+                </div> -->
+
+                <div id="available_items" class="
+                grid grid-cols-3 gap-4 mt-20 hover:grid-cols-3
+
+                ">
+
+                    @foreach ($additems as $additem)
+
+
+                    <div class="card card-compact w-96 bg-base-100 shadow-xl">
+                        <figure class="h-44 w-full"><img src="{{ $additem->picture_link }}" alt="Shoes" class=" object-cover" /></figure>
+                        <div class="card-body">
+                            <h2 class="card-title">{{
+                                $additem->item_name
+                                
+                            }}</h2>
+
+                        </div>
+                    </div>
+
+
+                    @endforeach
+
+
                 </div>
+
             </div>
 
 

@@ -3,6 +3,8 @@
         <div class="hero min-h-screen bg-base-200  m-auto">
             <div class="hero-content flex-col lg:flex-row-reverse">
 
+
+
                 @if (Auth::user()->role !== 'admin')
                 <div class="text-center lg:text-left">
                     <h1 class="text-3xl font-bold">Having an unsatisfactory experience?</h1>
@@ -33,7 +35,7 @@
                                     <span class="label-text
                 text-gray-600">Complaint</span>
                                 </label>
-                                <textarea placeholder="Write your complaint here..." name="complaint_text" id="complaint" cols="30" rows="10" required="true" class="textarea textarea-bordered"></textarea>
+                                <textarea maxlength="250" placeholder="Write your complaint here..." name="complaint_text" id="complaint" cols="30" rows="7" required="true" class="textarea textarea-bordered"></textarea>
                             </div>
 
                             <div class="form-control mt-6">
@@ -44,32 +46,41 @@
 
                     @endif
 
+
+
                     @if (Auth::user()->role == 'admin')
-                    <div id="complaints_show" class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        @foreach ($complaints as $complaint)
-                        <div class="card w-96 bg-neutral text-neutral-content mb-10">
-                            <div class="card-body items-center text-center">
-                                <h2 class="card-title">
-                                    {{ $complaint->name }}
+                    <div id="grid_complaints_wrapper" class="overflow-x-auto flex justify-center items-center mt-10 w-full mb-40">
+                        @if (count($complaints) > 0)
+                        <div id="grid_complaints_cards" class="flex flex-col gap-5 w-full">
+                            <h1 class="text-xl">Latest Complaints </h1>
+                            <div class="grid grid-cols-3 gap-4 w-full">
 
-                                </h2>
-                                <p>
-                                    {{ $complaint->house_no_block }}
-                                </p>
+                                @foreach($complaints as $complaint)
+                                <div class="card w-96  bg-base-100 shadow-xl">
+                                    <div class="card-body">
+                                        <h2 class="card-title">{{$complaint->name}}</h2>
+                                        <p class="card-subtitle text-gray-500">{{$complaint->house_no_block}}</p>
+                                        <p class="card-text">{{$complaint->complaint_text}}</p>
+                                        <div class="card-actions">
+                                            <form action="/complaints/confirm" method="POST" id="{{$complaint->id}}">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$complaint->id}}">
 
-                                <p>
-                                    {{ $complaint->complaint_text }}
-                                </p>
+                                                <button type="submit" form="{{$complaint->id}}" class="btn btn-primary mt-5">Confirm</button>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
-                        @endforeach
+                        @endif
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
     @endif
-
 
 </x-app-layout>

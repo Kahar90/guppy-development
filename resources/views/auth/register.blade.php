@@ -14,6 +14,23 @@
                 <h3 class="text-xl text-[#3d4451]">
                     Already registered? <a class="text-black hover:underline" href="/login">Login</a>
                 </h3>
+
+                <div class="flex flex-row justify-center gap-2 mt-2">
+                    <button class="btn btn-primary bg-[#6e7d95] gap-2" onclick="window.location.href='/login/google'">
+                        <img class="w-[20px] h-[20px]" src="/assets/google.png" />
+                        <h1>Google</h1>
+
+                    </button>
+                    <div class="divider divider-vertical"></div>
+                    <button class="btn btn-primary bg-[#6e7d95] gap-2" onclick="window.location.href='/login/github'">
+
+                        <img class="w-[20px] h-[20px]" src="/assets/github.png" />
+                        <h1>Github</h1>
+                    </button>
+                </div>
+
+                <p class="text-sm mt-2">Or continue with your social accounts.</p>
+
                 <div class="divider"></div>
             </div>
 

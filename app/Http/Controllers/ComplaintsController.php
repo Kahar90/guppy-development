@@ -21,6 +21,12 @@ class ComplaintsController extends Controller
         return view('addComplaintSuccess');
     }
 
+
+    public function confirm(Request $request){
+        DB::table('complaints')->where('id', $request->id)->delete();
+        return redirect()->route('complaints.index');
+    }
+
     // pull data from database
     public function index()
     {
@@ -28,5 +34,3 @@ class ComplaintsController extends Controller
         return view('complaints', ['complaints' => $complaints]);
     }
 }
-
-?>

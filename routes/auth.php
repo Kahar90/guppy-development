@@ -22,6 +22,18 @@ Route::middleware('guest')->group(function () {
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
+
+    // Socialite
+    // github
+    Route::get('login/github', [AuthenticatedSessionController::class, 'redirectToProviderGithub'])->name('login.github');
+    Route::get('login/github/redirect', [AuthenticatedSessionController::class, 'handleProviderCallbackGithub']);
+    
+    
+    // google
+    Route::get('login/google', [AuthenticatedSessionController::class, 'redirectToProviderGoogle'])->name('login.google');
+    Route::get('login/google/redirect', [AuthenticatedSessionController::class, 'handleProviderCallbackGoogle']);
+
+
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');
 

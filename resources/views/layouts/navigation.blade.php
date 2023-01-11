@@ -1,6 +1,8 @@
 <div class="navbar bg-base-100">
     <div class="flex-1">
-        <a href="/dashboard" class="btn btn-ghost normal-case text-xl">Guppy</a>
+        <a href="/dashboard" class="btn btn-ghost normal-case text-xl">
+            Communicare
+        </a>
     </div>
     <div class="flex-none">
         <ul class="menu menu-horizontal px-1">
@@ -19,9 +21,17 @@
                     @endif
                 </a></li>
 
+
+
             {{-- only shows if user role is admin --}}
             @if (Auth::user()->role == 'admin')
+            <li>
+                <a href="/qrconfirmbooking">
+                    Confirm Booking
+                </a>
+            </li>
             <li><a href="/additem">Add Item</a></li>
+            
             @endif
 
 

@@ -10,33 +10,40 @@
         <div class="min-h-screen">
 
             @if(Auth::user()->role == 'admin')
-            <div id="complaints_show" class="overflow-auto m-auto justify-center p-20 grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                @foreach ($bookings as $booking)
-                <div class="card w-96 bg-neutral text-neutral-content mb-10 ">
-                    <div class="card-body items-center text-center">
-                        <h2 class="card-title">
-                            {{ $booking->name }} booked <span class="text-green-500">{{ $booking->booked_item }} </span>
+            @if (count($bookings) > 0)
+            <div id="table_latest_bookings" class="overflow-x-auto flex justify-center mt-10">
+                <div class="flex flex-col gap-5 w-4/5">
+                    <h1 class="text-xl">Latest Bookings </h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="border">Name</th>
+                                <th class="border">Phone</th>
+                                <th class="border">Facility</th>
+                                <th class="border">Date</th>
+                                <th class="border">Time</th>
 
-                        </h2>
-                        <p>
-                            {{ $booking->house_no_block }}
-                        </p>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($bookings as $booking)
+                            <tr>
+                                <td class="border">{{$booking->name}}</td>
+                                <td class="border">{{$booking->phone}}</td>
+                                <td class="border">{{$booking->booked_item}}</td>
+                                <td class="border">{{$booking->booking_date}}</td>
+                                <td class="border">{{$booking->time}}</td>
 
-                        <p>
-                            {{ $booking->phone }}
-                        </p>
-
-                        <p>
-                            {{ $booking->booking_date }}
-                        </p>
-
-                        <p>
-                            {{ $booking->time }}
-                        </p>
-                    </div>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                @endforeach
             </div>
+            @endif
+
+
+
             @else
             <div class="
         flex flex-col items-center mt-4 min-h-screen overflow-auto">
