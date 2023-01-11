@@ -125,7 +125,7 @@
 
 
             @else
-            <div id="user_dashboard">
+            <div id="user_dashboard" class="mt-20">
 
                 <div id="info_cards" class="flex flex-row gap-5 justify-center items-center w-4/5 m-auto">
                     <div class="card w-96 bg-base-100 shadow-xl">
